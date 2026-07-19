@@ -110,7 +110,7 @@ class Srkp_Form_Maker_Public {
 	public function ajax_submit_form() {
 		check_ajax_referer( 'srkp_form_nonce', 'nonce' );
 
-		$form_type = isset( $_POST['form_type'] ) ? sanitize_text_field( $_POST['form_type'] ) : '';
+		$form_type = isset( $_POST['form_type'] ) ? sanitize_text_field( wp_unslash( $_POST['form_type'] ) ) : '';
 		if ( empty( $form_type ) ) {
 			wp_send_json_error( array( 'message' => 'Required fields missing.' ) );
 		}
@@ -158,18 +158,18 @@ class Srkp_Form_Maker_Public {
 
 		// In case no field match primary name/email/phone, fall back to POST primary arguments
 		if ( $name === 'Anonymous Submitter' && isset( $_POST['name'] ) ) {
-			$name = sanitize_text_field( $_POST['name'] );
+			$name = sanitize_text_field( wp_unslash( $_POST['name'] ) );
 		}
 		if ( empty( $email ) && isset( $_POST['email'] ) ) {
-			$email = sanitize_email( $_POST['email'] );
+			$email = sanitize_email( wp_unslash( $_POST['email'] ) );
 		}
 		if ( empty( $phone ) && isset( $_POST['phone'] ) ) {
-			$phone = sanitize_text_field( $_POST['phone'] );
+			$phone = sanitize_text_field( wp_unslash( $_POST['phone'] ) );
 		}
 
 		// Add reference details for booking
 		if ( $form_type === 'booking' && isset( $_POST['reference'] ) ) {
-			$extra_details['Reference Code'] = sanitize_text_field( $_POST['reference'] );
+			$extra_details['Reference Code'] = sanitize_text_field( wp_unslash( $_POST['reference'] ) );
 		}
 
 		// Create custom post of type 'srkp_submission'

@@ -505,7 +505,7 @@ class Srkp_Form_Maker_Admin {
 		if ( ! isset( $_POST['srkp_form_fields_nonce'] ) ) {
 			return;
 		}
-		if ( ! wp_verify_nonce( $_POST['srkp_form_fields_nonce'], 'srkp_form_fields_save' ) ) {
+		if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['srkp_form_fields_nonce'] ) ), 'srkp_form_fields_save' ) ) {
 			return;
 		}
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -516,12 +516,13 @@ class Srkp_Form_Maker_Admin {
 		}
 
 		if ( isset( $_POST['notification_emails'] ) ) {
-			update_post_meta( $post_id, '_srkp_notification_emails', sanitize_text_field( $_POST['notification_emails'] ) );
+			update_post_meta( $post_id, '_srkp_notification_emails', sanitize_text_field( wp_unslash( $_POST['notification_emails'] ) ) );
 		}
 		
 		if ( isset( $_POST['form_fields'] ) && is_array( $_POST['form_fields'] ) ) {
+			$form_fields = wp_unslash( $_POST['form_fields'] );
 			$saved_fields = array();
-			foreach ( $_POST['form_fields'] as $field ) {
+			foreach ( $form_fields as $field ) {
 				$saved_fields[] = array(
 					'label'    => sanitize_text_field( $field['label'] ),
 					'id'       => sanitize_title_with_dashes( $field['id'] ),
