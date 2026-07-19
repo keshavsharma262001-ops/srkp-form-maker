@@ -86,8 +86,7 @@ class Srkp_Form_Maker {
 	 * @access   private
 	 */
 	private function set_locale() {
-		$plugin_i18n = new Srkp_Form_Maker_i18n();
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		// Translation files are loaded automatically by WordPress.org since 4.6.
 	}
 
 	/**
