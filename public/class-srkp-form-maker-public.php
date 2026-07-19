@@ -234,7 +234,7 @@ class Srkp_Form_Maker_Public {
 		$message_body .= '<p style="margin-top: 30px; font-size: 13px; color: #777;">You can view and manage this submission directly from your WordPress dashboard under <strong>Submissions</strong>.</p>';
 		$message_body .= '</div>';
 		$message_body .= '<div style="background: #f5f5f5; color: #888; padding: 15px; text-align: center; font-size: 12px; border-top: 1px solid #e1e1e1;">';
-		$message_body .= '&copy; ' . date( 'Y' ) . ' SRKP Resort. All Rights Reserved.';
+		$message_body .= '&copy; ' . gmdate( 'Y' ) . ' SRKP Resort. All Rights Reserved.';
 		$message_body .= '</div>';
 		$message_body .= '</div>';
 		$message_body .= '</body></html>';
