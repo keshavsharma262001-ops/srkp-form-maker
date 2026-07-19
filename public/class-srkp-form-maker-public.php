@@ -309,7 +309,7 @@ class Srkp_Form_Maker_Public {
 		}
 
 		if ( ! $form_post ) {
-			echo "<p style='color:red;'>Form '" . esc_html( $form_slug ) . "' not found. Please verify it is created in the Forms Builder admin screen.</p>";
+			printf( '<p style="color:red;">Form \'%s\' not found. Please verify it is created in the Forms Builder admin screen.</p>', esc_html( $form_slug ) );
 			return;
 		}
 
@@ -325,9 +325,9 @@ class Srkp_Form_Maker_Public {
 		
 		$in_row = false;
 		foreach ( $fields as $index => $field ) {
-			$field_id      = esc_attr( $field['id'] );
-			$field_label   = esc_html( $field['label'] );
-			$field_type    = esc_attr( $field['type'] );
+			$field_id      = $field['id'];
+			$field_label   = $field['label'];
+			$field_type    = $field['type'];
 			$field_req     = ! empty( $field['required'] ) ? 'required' : '';
 			$field_options = isset( $field['options'] ) ? $field['options'] : '';
 			$field_width   = isset( $field['width'] ) ? $field['width'] : 'full';
@@ -345,10 +345,10 @@ class Srkp_Form_Maker_Public {
 			}
 
 			echo '<div class="form-group">';
-			echo '<label for="' . $field_id . '">' . $field_label . '</label>';
+			echo '<label for="' . esc_attr( $field_id ) . '">' . esc_html( $field_label ) . '</label>';
 
 			if ( $field_type === 'select' ) {
-				echo '<select id="' . $field_id . '" name="' . $field_id . '" ' . $field_req . '>';
+				echo '<select id="' . esc_attr( $field_id ) . '" name="' . esc_attr( $field_id ) . '" ' . ( $field_req ? 'required' : '' ) . '>';
 				$options_arr = explode( ',', $field_options );
 				foreach ( $options_arr as $opt ) {
 					$opt = trim( $opt );
@@ -362,9 +362,9 @@ class Srkp_Form_Maker_Public {
 				}
 				echo '</select>';
 			} elseif ( $field_type === 'textarea' ) {
-				echo '<textarea id="' . $field_id . '" name="' . $field_id . '" rows="3" placeholder="Enter ' . strtolower( $field_label ) . '..." ' . $field_req . '></textarea>';
+				echo '<textarea id="' . esc_attr( $field_id ) . '" name="' . esc_attr( $field_id ) . '" rows="3" placeholder="' . esc_attr( 'Enter ' . strtolower( $field_label ) . '...' ) . '" ' . ( $field_req ? 'required' : '' ) . '></textarea>';
 			} else {
-				echo '<input type="' . $field_type . '" id="' . $field_id . '" name="' . $field_id . '" placeholder="Enter ' . strtolower( $field_label ) . '" ' . $field_req . '>';
+				echo '<input type="' . esc_attr( $field_type ) . '" id="' . esc_attr( $field_id ) . '" name="' . esc_attr( $field_id ) . '" placeholder="' . esc_attr( 'Enter ' . strtolower( $field_label ) ) . '" ' . ( $field_req ? 'required' : '' ) . '>';
 			}
 			echo '</div>';
 

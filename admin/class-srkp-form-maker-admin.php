@@ -355,36 +355,36 @@ class Srkp_Form_Maker_Admin {
 				<tbody id="srkp-fields-rows">
 					<?php if ( ! empty( $fields ) ) : ?>
 						<?php foreach ( $fields as $index => $field ) : ?>
-							<tr class="field-row" data-index="<?php echo $index; ?>">
+							<tr class="field-row" data-index="<?php echo esc_attr( $index ); ?>">
 								<td class="drag-handle" style="text-align:center; cursor:move; vertical-align:middle;">
 									<span class="dashicons dashicons-menu" style="color:#aaa;"></span>
 								</td>
 								<td>
-									<input type="text" name="form_fields[<?php echo $index; ?>][label]" value="<?php echo esc_attr( $field['label'] ); ?>" style="width:100%;" required>
+									<input type="text" name="form_fields[<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $field['label'] ); ?>" style="width:100%;" required>
 									<div class="options-container" style="margin-top:5px; <?php echo $field['type'] === 'select' ? '' : 'display:none;'; ?>">
 										<label style="font-size:11px; color:#555; display:block;">Select Options (comma-separated value:label):</label>
-										<input type="text" name="form_fields[<?php echo $index; ?>][options]" value="<?php echo esc_attr( isset( $field['options'] ) ? $field['options'] : '' ); ?>" style="width:100%;" placeholder="e.g. standard:Standard, premium:Premium">
+										<input type="text" name="form_fields[<?php echo esc_attr( $index ); ?>][options]" value="<?php echo esc_attr( isset( $field['options'] ) ? $field['options'] : '' ); ?>" style="width:100%;" placeholder="e.g. standard:Standard, premium:Premium">
 									</div>
 								</td>
 								<td>
-									<input type="text" name="form_fields[<?php echo $index; ?>][id]" value="<?php echo esc_attr( $field['id'] ); ?>" style="width:100%; font-family:monospace;" required>
+									<input type="text" name="form_fields[<?php echo esc_attr( $index ); ?>][id]" value="<?php echo esc_attr( $field['id'] ); ?>" style="width:100%; font-family:monospace;" required>
 								</td>
 								<td>
-									<select name="form_fields[<?php echo $index; ?>][type]" class="field-type-select" style="width:100%;">
+									<select name="form_fields[<?php echo esc_attr( $index ); ?>][type]" class="field-type-select" style="width:100%;">
 										<?php foreach ( $types as $val => $lbl ) : ?>
-											<option value="<?php echo $val; ?>" <?php selected( $field['type'], $val ); ?>><?php echo $lbl; ?></option>
+											<option value="<?php echo esc_attr( $val ); ?>" <?php selected( $field['type'], $val ); ?>><?php echo esc_html( $lbl ); ?></option>
 										<?php endforeach; ?>
 									</select>
 								</td>
 								<td>
-									<select name="form_fields[<?php echo $index; ?>][width]" style="width:100%;">
+									<select name="form_fields[<?php echo esc_attr( $index ); ?>][width]" style="width:100%;">
 										<?php foreach ( $widths as $val => $lbl ) : ?>
-											<option value="<?php echo $val; ?>" <?php selected( isset( $field['width'] ) ? $field['width'] : 'full', $val ); ?>><?php echo $lbl; ?></option>
+											<option value="<?php echo esc_attr( $val ); ?>" <?php selected( isset( $field['width'] ) ? $field['width'] : 'full', $val ); ?>><?php echo esc_html( $lbl ); ?></option>
 										<?php endforeach; ?>
 									</select>
 								</td>
 								<td style="text-align:center; vertical-align:middle;">
-									<input type="checkbox" name="form_fields[<?php echo $index; ?>][required]" value="yes" <?php checked( ! empty( $field['required'] ) ); ?>>
+									<input type="checkbox" name="form_fields[<?php echo esc_attr( $index ); ?>][required]" value="yes" <?php checked( ! empty( $field['required'] ) ); ?>>
 								</td>
 								<td style="vertical-align:middle;">
 									<button type="button" class="button button-link-delete delete-field-row">Delete</button>
