@@ -49,7 +49,7 @@ class Srkp_Form_Maker_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_register_script( 'srkp-form-maker-helper', '' );
+		wp_register_script( 'srkp-form-maker-helper', '', array(), $this->version, true );
 		wp_enqueue_script( 'srkp-form-maker-helper' );
 		wp_localize_script( 'srkp-form-maker-helper', 'srkp_form_ajax', array(
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
