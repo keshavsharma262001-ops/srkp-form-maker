@@ -258,6 +258,15 @@ class Srkp_Form_Maker_Public {
 	}
 
 	/**
+	 * Register shortcodes.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_shortcodes() {
+		add_shortcode( 'srkp_form', array( $this, 'form_shortcode' ) );
+	}
+
+	/**
 	 * Shortcode callback to render the forms.
 	 *
 	 * @since    1.0.0
