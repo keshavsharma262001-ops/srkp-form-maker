@@ -19,11 +19,7 @@ class Srkp_Form_Maker_i18n {
 	 * @since    1.0.0
 	 */
 	public function load_plugin_textdomain() {
-		load_plugin_textdomain(
-			'srkp-form-maker',
-			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
+		// Translation files are loaded automatically by WordPress.org since 4.6.
 	}
 
 }
