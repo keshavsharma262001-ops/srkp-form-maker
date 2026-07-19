@@ -520,7 +520,7 @@ class Srkp_Form_Maker_Admin {
 		}
 		
 		if ( isset( $_POST['form_fields'] ) && is_array( $_POST['form_fields'] ) ) {
-			$form_fields = wp_unslash( $_POST['form_fields'] );
+			$form_fields = map_deep( wp_unslash( $_POST['form_fields'] ), 'sanitize_text_field' );
 			$saved_fields = array();
 			foreach ( $form_fields as $field ) {
 				$saved_fields[] = array(
